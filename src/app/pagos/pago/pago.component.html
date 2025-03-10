@@ -1,0 +1,45 @@
+<form class="example-form"  [formGroup]="firstFormGroup" (submit)="submit()">
+  <ng-template matStepLabel>Informacion personal</ng-template>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Total a Pagar</mat-label>
+    <input matInput [required]="true"  value=""  [(ngModel)] = "credit.cantidad" [disabled]="true"
+           formControlName="totalPagar" name="totalPagar">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre de Persona que realiza el pago</mat-label>
+    <input matInput [required]="true"  value=""
+           formControlName="nombre" name="nombre">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Numero Identificación</mat-label>
+    <input matInput [required]="true"  value=""
+           formControlName="numeroIdentificacion" name="numeroIdentificacion">
+  </mat-form-field>
+
+  <p>
+    <mat-form-field  class="example-full-width">
+      <mat-label>Banco</mat-label>
+      <mat-select formControlName="banco" class="example-full-width"
+                  [required]="true"  name="banco" >
+        <mat-option value="0">Bancolombia</mat-option>
+        <mat-option value="1">Banco Bogota</mat-option>
+        <mat-option value="2">Banco Santander</mat-option>
+        <mat-option value="3" >Nequi</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+  </p>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Correo Electronico</mat-label>
+    <input matInput formControlName="correoElectronico" [required]="true"  value=""   name="correoElectronico">
+  </mat-form-field>
+
+  <button mat-button type="submit"  align = "end">Realizar Pago</button>
+</form>

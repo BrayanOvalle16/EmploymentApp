@@ -1,0 +1,40 @@
+<h1>Creditos</h1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <!-- Position Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente.nombre}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="numero-identificacion">
+    <th mat-header-cell *matHeaderCellDef> Numero Identificacion </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente.numeroDeIdentificacion}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="tipo-credito">
+    <th mat-header-cell *matHeaderCellDef> Tipo De Credito</th>
+    <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="cantidad">
+    <th mat-header-cell *matHeaderCellDef>Cantidad Solicitada</th>
+    <td mat-cell *matCellDef="let element"> {{element.cantidadSolicitada}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="accion">
+    <th mat-header-cell *matHeaderCellDef> Accion </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" aria-label="Detalles" (click)="openDialog(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

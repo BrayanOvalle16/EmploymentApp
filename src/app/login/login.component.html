@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Numero De Cedula"
+                 [(ngModel)] = "login.username"
+                 formControlName="username">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field *ngIf="isAdminLogin">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" placeholder="Contraseña"
+                 name="password"   value=""  [(ngModel)] = "login.password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-button >Login</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

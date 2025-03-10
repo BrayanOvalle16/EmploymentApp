@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Informacion del cliente</h2>
+<mat-dialog-content class="mat-typography">
+<mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="data.cliente.nombre"  [disabled]="true">
+      </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Numero Identificacion</mat-label>
+      <input matInput [(ngModel)]="data.cliente.numeroDeIdentificacion"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Ingresos</mat-label>
+      <input matInput [(ngModel)]="data.cliente.ingresos"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Numero De cuotas</mat-label>
+      <input matInput [(ngModel)]="data.numeroDeCuotas"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Tipo de credito solicitado</mat-label>
+      <input matInput [(ngModel)]="data.tipo"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Porcentaje de interes</mat-label>
+      <input matInput [(ngModel)]="data.porcentajeInteres"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Cantidad Solicitada</mat-label>
+      <input matInput [(ngModel)]="data.cantidadSolicitada"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Numero De cuotas</mat-label>
+      <input matInput [(ngModel)]="data.numeroDeCuotas"  [disabled]="true">
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Rechazar</button>
+  <button mat-button  (click)="onApprovedClick()" cdkFocusInitial>Aprobar</button>
+</mat-dialog-actions>
