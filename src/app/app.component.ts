@@ -16,5 +16,5 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'credit-application';
+  title = 'Aplicacion de empleos';
 }
