@@ -18,6 +18,7 @@ import { Credit } from '../../Modelos/Credit';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-cliente-create',
@@ -25,6 +26,7 @@ import { Router } from '@angular/router';
   imports: [
     MatFormField,
     MatIcon,
+    MatToolbarModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     MatButtonModule,
@@ -39,6 +41,11 @@ import { Router } from '@angular/router';
   styleUrl: './cliente-create.component.css'
 })
 export class ClienteCreateComponent {
+
+  file_store: FileList | undefined;
+  file_list: Array<string> = [];
+  display: FormControl = new FormControl("", Validators.required);
+
   email = new FormControl('', [Validators.required, Validators.email]);
   errorMessage = '';
   createButtonState = false;
@@ -121,9 +128,7 @@ export class ClienteCreateComponent {
 
 
   secondFormGroup = this.formBuilder.group({
-    tipo: ['', [Validators.required]],
-    plazo: ['', Validators.required],
-    amount :['', [Validators.required, this.userExistsValidator()]]
+    workProfile: ['', [Validators.required]]
   });
 
   constructor(private client: ServiceCreditApplicationService, private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router:Router) {
@@ -136,20 +141,54 @@ export class ClienteCreateComponent {
 
   }
 
+
+  loading: boolean = false; // Nuevo estado de carga
+
   createCliente() {
-    this.createButtonState  = true;
-    this.client.saveClient(this.cliente).subscribe(res => {
-      this.cliente.id = res.id;
-      this.createCredit();
+    this.loading = true; // Iniciar loading
+    this.createButtonState = true;
+
+    this.client.saveClient(this.cliente, this.file_store?.item(0) as File).subscribe({
+      next: (res) => {
+        this.loading = false; // Ocultar loading al completar
+        this.cliente.id = res.id;
+        this._snackBar.open("Registro exitoso", "Ok");
+        this.router.navigate(["/login-cliente"]);
+      },
+      error: (error) => {
+        this.loading = false; // Ocultar loading en caso de error
+        this.createButtonState = false;
+
+        console.error(error);
+
+        let errorMessage = "Error al crear el cliente";
+        if (error.error) {
+          errorMessage = error.error; // Mensaje desde el backend
+        }
+
+        this._snackBar.open(errorMessage, "Ok", {
+          duration: 5000,
+          panelClass: ['snackbar-error']
+        });
+      }
     });
   }
 
-  createCredit() {
-    this.credit.cliente = this.cliente;
-    this.client.saveCredit(this.credit).subscribe(res => {
-      this._snackBar.open("Su solicitud a sido recibida, en los proximos dias recibira mas informacion sobre la peticion", "Ok");
-      this.router.navigate(["/login-cliente"]);
-    });
+
+
+
+
+  handleFileInputChange(l: FileList | null): void {
+    if(l) {
+      this.file_store = l;
+      if (l.length) {
+        const f = l[0];
+        const count = l.length > 1 ? `(+${l.length - 1} files)` : "";
+        this.display.patchValue(`${f.name}${count}`);
+      } else {
+        this.display.patchValue("");
+      }
+    }
   }
 
   updateErrorMessage() {

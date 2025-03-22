@@ -24,9 +24,16 @@ export class ServiceCreditApplicationService {
     return this.http.post<Client>(this.url + "/login/admin", login);
   }
 
-  saveClient(client: Client) {
-    return this.http.post<Client>(this.url + "/Cliente/create", client);
+  saveClient(client: Client, cv: File) {
+    const formData = new FormData();
+    formData.append("file", cv); // Añadir el archivo
+    formData.append("client", new Blob([JSON.stringify(client)], { type: "application/json" })); // Convertir el objeto client a JSON
+
+    return this.http.post<Client>(this.url + "/Cliente/create", formData);
   }
+
+
+
 
   saveCredit(credit: Credit) {
     return this.http.post<Client>(this.url + "/Credito/create", credit);
