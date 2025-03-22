@@ -9,4 +9,6 @@ export class Client {
   correoElectronico: string | undefined;
   numeroDeIdentificacion: string | undefined;
   password: string | undefined;
+  profileDescription: string | undefined;
+  cv: string | undefined;
 }

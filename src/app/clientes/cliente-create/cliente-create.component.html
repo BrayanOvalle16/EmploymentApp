@@ -1,152 +1,119 @@
-<h1>Datos de Solicitud de Credito</h1>
+<h1>Datos de Registro</h1>
 <hr>
 <mat-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <div class="container" >
-      <form class="example-form"  [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Informacion personal</ng-template>
+    <div class="container">
+      <form class="example-form" [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Información personal</ng-template>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Numero de Identificacion</mat-label>
-          <input matInput [required]="true"  value=""  [(ngModel)] = "cliente.numeroDeIdentificacion"
-                 formControlName="identificationNumber" name="identification">
+          <mat-label>Número de Identificación</mat-label>
+          <input matInput required [(ngModel)]="cliente.numeroDeIdentificacion" formControlName="identificationNumber" name="identification">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" name="password" [required]="true"  value=""  [(ngModel)] = "cliente.password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password" required [(ngModel)]="cliente.password">
+          <button mat-icon-button matSuffix (click)="hide = !hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Correo Electronico</mat-label>
-          <input matInput formControlName="email" [required]="true"  value=""  [(ngModel)] = "cliente.correoElectronico" name="correoElectronico">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput formControlName="email" required [(ngModel)]="cliente.correoElectronico" name="correoElectronico">
         </mat-form-field>
 
-        <table class="example-full-width" cellspacing="0"><tr>
-          <td><mat-form-field class="example-full-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput [required]="true" formControlName="name" [(ngModel)] = "cliente.nombre" name="name">
-          </mat-form-field></td>
-          <td><mat-form-field class="example-full-width">
-            <mat-label>Apellido</mat-label>
-            <input matInput [required]="true" formControlName="lastName" [(ngModel)] = "cliente.apellido" name="lastname">
-          </mat-form-field></td>
-        </tr></table>
-
-        <p>
-          <mat-form-field class="example-full-width">
-            <mat-label>Dirección</mat-label>
-            <textarea matInput formControlName="address" [required]="true" placeholder="Ej. 100 Main St"
-                      [(ngModel)] = "cliente.direccion" name="address"></textarea>
-          </mat-form-field>
-        </p>
-        <mat-form-field class="example-full-width">
-          <mat-label>Ciudad</mat-label>
-          <input matInput formControlName="city" [required]="true" placeholder="Ej. Bogotá" >
-        </mat-form-field>
-
-        <table class="example-full-width" cellspacing="0"><tr>
-          <td>  <mat-form-field class="example-full-width">
-            <mat-label>Fecha de nacimiento</mat-label>
-            <input matInput formControlName="dateOfBirth" [required]="true" [matDatepicker]="picker" [(ngModel)] = "cliente.fechaNacimiento" name="dateOfBirth">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field></td>
-
-          <td><mat-form-field class="example-full-width">
-            <mat-label>Numero telefonico</mat-label>
-            <input  matInput formControlName="mobile"  placeholder="Ej. 319323233223" [(ngModel)] = "cliente.numeroTelefonico" name="number">
-          </mat-form-field></td>
-        </tr>
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput required formControlName="name" [(ngModel)]="cliente.nombre" name="name">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Apellido</mat-label>
+                <input matInput required formControlName="lastName" [(ngModel)]="cliente.apellido" name="lastname">
+              </mat-form-field>
+            </td>
+          </tr>
         </table>
 
-        <mat-form-field floatLabel="always" class="example-full-width">
-          <mat-label>Ingresos</mat-label>
-          <input matInput type="number" class="example-right-align" formControlName="income"
-                 [(ngModel)] = "cliente.ingresos" name="income"
-                 [required]="true" placeholder="1.000.000">
-          <span matTextPrefix>$&nbsp;</span>
-          <span matTextSuffix>.00</span>
+        <mat-form-field class="example-full-width">
+          <mat-label>Dirección</mat-label>
+          <textarea matInput formControlName="address" required [(ngModel)]="cliente.direccion" name="address"></textarea>
         </mat-form-field>
 
-        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ciudad</mat-label>
+          <input matInput formControlName="city" required>
+        </mat-form-field>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput formControlName="dateOfBirth" required [matDatepicker]="picker" [(ngModel)]="cliente.fechaNacimiento" name="dateOfBirth">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Número telefónico</mat-label>
+                <input matInput formControlName="mobile" placeholder="Ej. 319323233223" [(ngModel)]="cliente.numeroTelefonico" name="number">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
         <div>
           <button mat-button matStepperNext>Continuar</button>
         </div>
       </form>
-
     </div>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Información del credito">
+
+  <mat-step [stepControl]="secondFormGroup" label="Perfil laboral">
     <form [formGroup]="secondFormGroup">
 
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td>    <mat-form-field  class="example-full-width">
-          <mat-label>Tipo de Credito</mat-label>
-          <mat-select formControlName="tipo" [required]="true" [(ngModel)] = "credit.tipo" name="type" (ngModelChange)="validateUserExists(credit.cantidadSolicitada)">
-            <mat-option value="0">Vivienda</mat-option>
-            <mat-option value="1">Vehiculo</mat-option>
-            <mat-option value="2">Compra De Cartera</mat-option>
-            <mat-option value="3" >Estudio</mat-option>
-            <mat-option value="4">Libre Inversion</mat-option>
-          </mat-select>
-        </mat-form-field></td>
-        <td>    <mat-form-field  class="example-full-width">
-          <mat-label>Plazo en cuotas</mat-label>
-          <mat-select formControlName="plazo" [required]="true" [(ngModel)] = "credit.numeroDeCuotas" name="type"  (ngModelChange)="validateUserExists(credit.cantidadSolicitada)">
-            <mat-option value="12">12 Meses</mat-option>
-            <mat-option value="24">24 Meses</mat-option>
-            <mat-option value="36">36 Meses</mat-option>
-            <mat-option value="48" >48 Meses</mat-option>
-            <mat-option value="60">60 Meses</mat-option>
-          </mat-select>
-        </mat-form-field></td>
-      </tr></table>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Hoja de vida</mat-label>
+        <button mat-icon-button matPrefix (click)="f_input.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input type="text" readonly matInput [formControl]="display"  />
+        <input
+          type="file"
+          multiple
+          hidden
+          #f_input
+          (change)="handleFileInputChange(f_input.files)"
+        />
+        <mat-error>Este campo en mandatorio</mat-error>
+      </mat-form-field>
 
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td>    <mat-form-field  class="example-full-width">
-          <mat-label>Dia de pago</mat-label>
-          <mat-select formControlName="plazo" [required]="true"
-                      [(ngModel)] = "credit.diaDePago" name="diaDePago" >
-            <mat-option value="1">Dia 1</mat-option>
-            <mat-option value="4">Dia 4</mat-option>
-            <mat-option value="15">Dia 15</mat-option>
-            <mat-option value="20" >Dia 20</mat-option>
-            <mat-option value="30">Dia 30</mat-option>
-          </mat-select>
-        </mat-form-field></td>
-        <td>         <mat-form-field floatLabel="always" class="example-full-width">
-          <mat-label>Cantidad Solicitada</mat-label>
-          <input matInput type="number" class="example-right-align"
-                 [(ngModel)] = "credit.cantidadSolicitada" name="amount" formControlName="amount"
-                 [required]="true" placeholder="1.000.000">
-          <span matTextPrefix>$&nbsp;</span>
-          <span matTextSuffix>.00</span>
-          @if (aceptableAmount != null) {
-          <mat-error>La cuota aproximada para la cantidad solicitada es de <strong>${{aceptableAmount}}</strong>. Su cuota mensual no puede ser mayor al 70% de su ingreso (<strong>${{monthlyPayment}}</strong>), es
-          decir su credito no puede ser mayor a <strong>${{acceptableCredit}}</strong></mat-error>
-          }
-        </mat-form-field></td>
-      </tr></table>
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción del Perfil Laboral</mat-label>
+        <textarea matInput formControlName="workProfile" rows="3"  [(ngModel)]="cliente.profileDescription" required></textarea>
+      </mat-form-field>
 
       <div>
-        <button mat-button matStepperPrevious>Atras</button>
+        <button mat-button matStepperPrevious>Atrás</button>
         <button mat-button matStepperNext>Continuar</button>
       </div>
     </form>
   </mat-step>
+
   <mat-step>
-    <ng-template matStepLabel>Confirmar Solicitud</ng-template>
-    <p>Seleccione la opcion de Solicitar para empezar con su solicitud.</p>
+    <ng-template matStepLabel>Confirmar</ng-template>
+    <p>Seleccione la opción de Solicitar para empezar con su registro.</p>
     <div>
-      <button mat-button matStepperPrevious>Atras</button>
-      <button mat-button (click)="createCliente()" [disabled]="createButtonState">Solicitar</button>
+      <button mat-button matStepperPrevious>Atrás</button>
+      <button mat-button (click)="createCliente()" >Solicitar</button>
     </div>
   </mat-step>
 </mat-stepper>
-
-
