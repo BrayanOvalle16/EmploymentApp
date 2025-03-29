@@ -1,0 +1,93 @@
+<h1>Registro de Empresa</h1>
+<hr>
+<mat-stepper [linear]="true">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Información de la Empresa</ng-template>
+
+      <mat-form-field class="full-width">
+        <mat-label>Nombre de la Empresa</mat-label>
+        <input matInput formControlName="nombreEmpresa" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Industria</mat-label>
+        <input matInput formControlName="industria" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Sitio Web</mat-label>
+        <input matInput formControlName="sitioWeb">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput formControlName="correo" type="email" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Dirección</mat-label>
+        <textarea matInput formControlName="direccion" required></textarea>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Continuar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Detalles Adicionales</ng-template>
+
+      <mat-form-field class="full-width">
+        <mat-label>Descripción de la Empresa</mat-label>
+        <textarea matInput formControlName="descripcion" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Tamaño de la Empresa</mat-label>
+        <input matInput formControlName="tamano" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Año de Fundación</mat-label>
+        <input matInput formControlName="anioFundacion" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>LinkedIn</mat-label>
+        <input matInput formControlName="linkedin">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Twitter</mat-label>
+        <input matInput formControlName="twitter">
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Atrás</button>
+        <button mat-button matStepperNext>Continuar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Confirmar</ng-template>
+    <p>Revise la información y haga clic en "Registrar" para finalizar.</p>
+    <div>
+      <button mat-button matStepperPrevious>Atrás</button>
+      <button mat-button (click)="registrarEmpresa()">Registrar</button>
+    </div>
+  </mat-step>
+</mat-stepper>

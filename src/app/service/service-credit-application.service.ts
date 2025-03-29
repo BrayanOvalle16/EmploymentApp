@@ -7,6 +7,7 @@ import { Login } from '../Modelos/Login';
 import { environment } from '../../environments/environment';
 import { Pagos } from '../Modelos/Pagos';
 import { PagosInfoByCliente } from '../Modelos/PagosInfoByCliente';
+import {Empresa} from "../Modelos/Empresa";
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +59,29 @@ export class ServiceCreditApplicationService {
   changeCreditStatus(request: CreditChangeStatusDto) {
     return this.http.put(this.url + "/Credito/update-state", request);
   }
+  // Create a new Empresa
+  createEmpresa(empresa: Empresa) {
+    return this.http.post<Empresa>(this.url, empresa);
+  }
+
+  // Get all Empresas
+  getEmpresas() {
+    return this.http.get<Empresa[]>(this.url);
+  }
+
+  // Get a single Empresa by ID
+  getEmpresaById(id: string) {
+    return this.http.get<Empresa>(`${this.url}/${id}`);
+  }
+
+  // Update an existing Empresa
+  updateEmpresa(id: string, empresa: Partial<Empresa>) {
+    return this.http.put<Empresa>(`${this.url}/${id}`, empresa);
+  }
+
+  // Delete an Empresa by ID
+  deleteEmpresa(id: string) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
 }

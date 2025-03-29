@@ -7,9 +7,11 @@ import { AuthGuard } from './utils/Guards/AuthGuard';
 import { AuthAdminGuard } from './utils/Guards/AuthAdminGuard';
 import { PaymentsListComponent } from './clientes/payments-list/payments-list.component';
 import { PagoComponent } from './pagos/pago/pago.component';
+import {RegistroEmpresaComponent} from "./admin/create/create.component";
 
 export const routes: Routes = [
   {path: '', component:ClienteCreateComponent},
+  {path: 'registro-empresa', component:RegistroEmpresaComponent},
   {path: 'admin-dashboard',component: CreditListComponent , canActivate: [AuthGuard, AuthAdminGuard] },
   { path: 'login-cliente', component: LoginComponent},
   { path: 'cliente-dashboard/:id', component: PaymentsListComponent, canActivate: [AuthGuard]},
