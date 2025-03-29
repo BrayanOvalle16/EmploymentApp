@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-
+  isEmpresa: boolean = false;
   isLoggedIn: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -22,6 +22,9 @@ export class NavBarComponent {
       console.log(isAuthenticated);
       this.isLoggedIn = isAuthenticated;
     });
+  }
+  onToggleIsEmpresa() {
+    this.isEmpresa = !this.isEmpresa;
   }
 
   logOut() {
