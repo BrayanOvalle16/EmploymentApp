@@ -28,7 +28,17 @@
       <mat-form-field class="full-width">
         <mat-label>Contraseña</mat-label>
         <input matInput formControlName="password" type="password" required>
+      
+        <!-- Mensajes de error -->
+        <mat-error *ngIf="firstFormGroup.get('password')?.hasError('required')">
+          La contraseña es obligatoria.
+        </mat-error>
+      
+        <mat-error *ngIf="firstFormGroup.get('password')?.hasError('pattern')">
+          La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.
+        </mat-error>
       </mat-form-field>
+      
 
       <mat-form-field class="full-width">
         <mat-label>Teléfono</mat-label>

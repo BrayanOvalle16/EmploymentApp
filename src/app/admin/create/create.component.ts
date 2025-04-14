@@ -10,6 +10,8 @@ import { Empresa } from '../../Modelos/Empresa';
 import {ServiceCreditApplicationService} from "../../service/service-credit-application.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import { passwordRegex } from '../../shared/regex.constants';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -21,7 +23,8 @@ import {Router} from "@angular/router";
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
@@ -42,7 +45,8 @@ export class RegistroEmpresaComponent {
       sitioWeb: ['', Validators.pattern('https?://.+')],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
-      direccion: ['', Validators.required]
+      direccion: ['', Validators.required],
+      password: ["", Validators.pattern(passwordRegex)]
     });
 
     this.secondFormGroup = this._formBuilder.group({

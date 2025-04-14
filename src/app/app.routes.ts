@@ -12,9 +12,9 @@ import {RegistroEmpresaComponent} from "./admin/create/create.component";
 export const routes: Routes = [
   {path: '', component:ClienteCreateComponent},
   {path: 'registro-empresa', component:RegistroEmpresaComponent},
-  {path: 'admin-dashboard',component: CreditListComponent , canActivate: [AuthGuard, AuthAdminGuard] },
+  {path: 'admin-dashboard',component: RegistroEmpresaComponent , canActivate: [AuthGuard, AuthAdminGuard] },
   { path: 'login-cliente', component: LoginComponent},
-  { path: 'cliente-dashboard/:id', component: PaymentsListComponent, canActivate: [AuthGuard]},
+  { path: 'cliente-dashboard/:id', component: ClienteCreateComponent, canActivate: [AuthGuard]},
   { path: 'cliente-pago/creditoId/:id/cantidadPagar/:cantidad', title: "pagar", component: PagoComponent, canActivate: [AuthGuard]},
 
 ];
