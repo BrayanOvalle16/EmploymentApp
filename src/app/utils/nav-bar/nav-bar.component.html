@@ -3,12 +3,12 @@
     <span>Aplicación de Empleos</span>
     <span class="example-spacer"></span>
 
-    <button [routerLink]="'registro-empresa'" mat-raised-button color="primary" class="example-icon"
-            aria-label="Detalles"  *ngIf="!isEmpresa" (click)="onToggleIsEmpresa()">
+    <button [routerLink]="''" mat-raised-button color="primary" class="example-icon"
+            aria-label="Detalles"  *ngIf="isEmpresa" (click)="onToggleIsEmpresa()">
       Para Persona
     </button>
-    <button [routerLink]="''" mat-raised-button color="primary" class="example-icon"
-             aria-label="Detalles"  *ngIf="isEmpresa" (click)="onToggleIsEmpresa()" >
+    <button [routerLink]="'registro-empresa'" mat-raised-button color="primary" class="example-icon"
+             aria-label="Detalles"  *ngIf="!isEmpresa" (click)="onToggleIsEmpresa()" >
       Para Empresa
     </button>
 

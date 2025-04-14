@@ -61,7 +61,7 @@ export class ServiceCreditApplicationService {
   }
   // Create a new Empresa
   createEmpresa(empresa: Empresa) {
-    return this.http.post<Empresa>(this.url, empresa);
+    return this.http.post<Empresa>(this.url + "/Empresa/create", empresa);
   }
 
   // Get all Empresas

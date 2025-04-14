@@ -1,4 +1,4 @@
-<h1>Datos de Registro</h1>
+<h1>Datos de Registro Persona</h1>
 <hr>
 <mat-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
@@ -10,14 +10,30 @@
           <mat-label>Número de Identificación</mat-label>
           <input matInput required [(ngModel)]="cliente.numeroDeIdentificacion" formControlName="identificationNumber" name="identification">
         </mat-form-field>
-
+        
         <mat-form-field class="example-full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password" required [(ngModel)]="cliente.password">
-          <button mat-icon-button matSuffix (click)="hide = !hide">
+          <input matInput
+                 [type]="hide ? 'password' : 'text'"
+                 formControlName="password"
+                 name="password"
+                 required
+                 [(ngModel)]="cliente.password">
+                 
+          <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+        
+          <!-- Mensajes de error -->
+          <mat-error *ngIf="firstFormGroup.get('password')?.hasError('required')">
+            La contraseña es obligatoria.
+          </mat-error>
+        
+          <mat-error *ngIf="firstFormGroup.get('password')?.hasError('pattern')">
+            La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.
+          </mat-error>
         </mat-form-field>
+        
 
         <mat-form-field class="example-full-width">
           <mat-label>Correo Electrónico</mat-label>

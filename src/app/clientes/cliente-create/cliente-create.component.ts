@@ -19,6 +19,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { passwordRegex } from '../../shared/regex.constants';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cliente-create',
@@ -26,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     MatFormField,
     MatIcon,
+    CommonModule,
     MatToolbarModule,
     ReactiveFormsModule,
     MatNativeDateModule,
@@ -41,7 +44,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './cliente-create.component.css'
 })
 export class ClienteCreateComponent {
-
   file_store: FileList | undefined;
   file_list: Array<string> = [];
   display: FormControl = new FormControl("", Validators.required);
@@ -65,7 +67,7 @@ export class ClienteCreateComponent {
     income: [''],
     email: ['',Validators.email],
     address: [''],
-    password : [''],
+    password : ['', Validators.pattern(passwordRegex)],
     mobile: ['',  Validators.pattern('[0-9]{10}')]
   });
 
