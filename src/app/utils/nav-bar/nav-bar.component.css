@@ -7,7 +7,41 @@
   flex: 1 1 auto;
 }
 
-.container {
-  background-color: blue;
+.body-container,
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav-container {
   width: 100%;
+}
+
+.side-nav {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: white; /* Fondo blanco como Material por defecto */
+  color: rgba(0, 0, 0, 0.87);
+}
+
+mat-toolbar.mat-primary {
+  color: white;
+}
+
+/* Mejora los ítems del menú */
+mat-nav-list a.mat-list-item {
+  border-radius: 4px;
+  margin: 4px 8px;
+}
+
+mat-nav-list a.mat-list-item:hover {
+  background-color: rgba(25, 118, 210, 0.1); /* efecto hover Material */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #fafafa;
 }

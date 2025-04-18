@@ -84,4 +84,9 @@ export class ServiceCreditApplicationService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
+  sendMessage(chatId: string, message: string) {
+    const url = `${this.url}/chat/${chatId}`;
+    const body = { message };
+    return this.http.post<{ response: string }>(url, body);
+  }
 }

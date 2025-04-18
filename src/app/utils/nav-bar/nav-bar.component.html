@@ -1,24 +1,52 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Aplicación de Empleos</span>
-    <span class="example-spacer"></span>
+<div class="body-container">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer [mode]="'side'" [opened]="drawerOpened" class="mat-elevation-z4 side-nav">
+      <mat-toolbar color="primary">Menú</mat-toolbar>
 
-    <button [routerLink]="''" mat-raised-button color="primary" class="example-icon"
-            aria-label="Detalles"  *ngIf="isEmpresa" (click)="onToggleIsEmpresa()">
-      Para Persona
-    </button>
-    <button [routerLink]="'registro-empresa'" mat-raised-button color="primary" class="example-icon"
-             aria-label="Detalles"  *ngIf="!isEmpresa" (click)="onToggleIsEmpresa()" >
-      Para Empresa
-    </button>
+      <mat-nav-list>
+        <ng-container *ngIf="hasRole(rolesEnum.user)">
+          <a mat-list-item [routerLink]="'/dashboard/chat'">
+            <mat-icon mat-list-icon>chat_bubble_outline</mat-icon>
+            <span>Simulador de entrevistas (IA)</span>
+          </a>
+        </ng-container>
 
-    <button [routerLink]="'login-cliente'" mat-raised-button color="primary" class="example-icon"
-            aria-label="Detalles"  *ngIf="!isLoggedIn">
-      Ingresar
-    </button>
-    <button  mat-raised-button color="primary" class="example-icon"
-            aria-label="Detalles"  *ngIf="isLoggedIn" (click)="logOut()" >
-      Salir
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+        <ng-container *ngIf="hasRole(rolesEnum.admin)">
+          <a mat-list-item [routerLink]="'/admin/dashboard'">
+            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
+            <span>Panel de Administración</span>
+          </a>
+        </ng-container>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="toggleDrawer()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Aplicación de Empleos</span>
+        <span class="example-spacer"></span>
+
+        <button *ngIf="isEmpresa" [routerLink]="''" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
+          Para Persona
+        </button>
+
+        <button *ngIf="!isEmpresa" [routerLink]="'/registro-empresa'" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
+          Para Empresa
+        </button>
+
+        <button *ngIf="!isLoggedIn" mat-raised-button color="primary" [routerLink]="'/login-cliente'">
+          Ingresar
+        </button>
+        <button *ngIf="isLoggedIn" mat-raised-button color="primary" (click)="logOut()">
+          Salir
+        </button>
+      </mat-toolbar>
+
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
