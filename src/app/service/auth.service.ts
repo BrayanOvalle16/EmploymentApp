@@ -38,6 +38,7 @@ export class AuthService {
     }
     return null;
   }
+  
   getRoles() {
     const helper = new JwtHelperService();
     const token = localStorage.getItem(this.tokenKey);

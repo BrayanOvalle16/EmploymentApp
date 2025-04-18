@@ -1,0 +1,22 @@
+<div class="chat-body">
+    <div class="chat-container mat-elevation-z4">
+        <div class="chat-header mat-primary">
+          <h3>Asistente de Chat</h3>
+        </div>
+      
+        <div class="chat-messages">
+          <div *ngFor="let msg of messages" class="chat-bubble" [ngClass]="msg.from">
+            <mat-card>
+              <mat-card-content>{{ msg.text }}</mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      
+        <form class="chat-input" (ngSubmit)="sendMessage()">
+          <mat-form-field class="input-field" appearance="outline">
+            <input matInput placeholder="Escribe tu mensaje..." [(ngModel)]="message" name="message" required />
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Enviar</button>
+        </form>
+      </div>      
+</div>

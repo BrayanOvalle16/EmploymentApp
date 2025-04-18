@@ -4,6 +4,45 @@
     width: 100%;
   }
   
+  .form-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Or center if you want it vertically centered */
+    align-items: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+  }
+  
+  mat-stepper {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 1rem;
+    }
+  
+    table tr td {
+      display: block;
+      width: 100%;
+    }
+  }
+  
   .full-width {
     width: 100%;
   }
@@ -27,5 +66,28 @@
   
   input.example-right-align {
     -moz-appearance: textfield;
+  }
+  
+  .formal-title {
+    font-size: 2rem; /* Slightly smaller for a professional look */
+    font-weight: 600; /* Medium weight for clarity */
+    color: #2c3e50; /* Darker shade for formal professionalism */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  
+  .formal-title::before {
+    content: "";
+    position: absolute;
+    width: 100px; /* Make it narrower for a more subtle effect */
+    height: 3px;
+    background-color: #2c3e50;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
   }
   
