@@ -72,10 +72,17 @@
             <td>
               <mat-form-field class="example-full-width">
                 <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput formControlName="dateOfBirth" required [matDatepicker]="picker" [(ngModel)]="cliente.fechaNacimiento" name="dateOfBirth">
+                <input 
+                  matInput 
+                  formControlName="dateOfBirth" 
+                  required 
+                  [matDatepicker]="picker" 
+                  [(ngModel)]="cliente.fechaNacimiento" 
+                  name="dateOfBirth"
+                  [max]="maxDate">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+              </mat-form-field>              
             </td>
             <td>
               <mat-form-field class="example-full-width">
