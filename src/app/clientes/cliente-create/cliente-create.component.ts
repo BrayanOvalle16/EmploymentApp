@@ -44,6 +44,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cliente-create.component.css'
 })
 export class ClienteCreateComponent {
+  maxDate: Date;
   file_store: FileList | undefined;
   file_list: Array<string> = [];
   display: FormControl = new FormControl("", Validators.required);
@@ -137,6 +138,8 @@ export class ClienteCreateComponent {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
+      const today = new Date();
+      this.maxDate = new Date(today.getFullYear() - 16, today.getMonth(), today.getDate());
   }
 
   ngOnInit(): void {
