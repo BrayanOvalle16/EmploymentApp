@@ -11,12 +11,28 @@
           </a>
         </ng-container>
 
-        <ng-container *ngIf="hasRole(rolesEnum.admin)">
-          <a mat-list-item [routerLink]="'/admin/dashboard'">
-            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
-            <span>Panel de Administración</span>
+        <ng-container *ngIf="hasRole(rolesEnum.user)">
+          <a mat-list-item [routerLink]="'/dashboard/postularse'">
+            <mat-icon mat-list-icon>chat_bubble_outline</mat-icon>
+            <span>Postulacion</span>
           </a>
         </ng-container>
+        
+        <ng-container *ngIf="hasRole(rolesEnum.admin)">
+          <a mat-list-item [routerLink]="'/empresa/crear-postulacion'">
+            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
+            <span>Crear oferta de trabajo</span>
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="hasRole(rolesEnum.admin)">
+          <a mat-list-item [routerLink]="'/empresa/listar-postulacion'">
+            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
+            <span>Ver postulados</span>
+          </a>
+        </ng-container>
+
+        
       </mat-nav-list>
     </mat-sidenav>
 
@@ -28,11 +44,11 @@
         <span>Aplicación de Empleos</span>
         <span class="example-spacer"></span>
 
-        <button *ngIf="isEmpresa" [routerLink]="''" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
+        <button *ngIf="isEmpresa && !isLoggedIn" [routerLink]="''" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
           Para Persona
         </button>
 
-        <button *ngIf="!isEmpresa" [routerLink]="'/registro-empresa'" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
+        <button *ngIf="!isEmpresa && !isLoggedIn" [routerLink]="'/registro-empresa'" mat-raised-button color="primary" (click)="onToggleIsEmpresa()">
           Para Empresa
         </button>
 

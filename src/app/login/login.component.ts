@@ -74,7 +74,7 @@ export class LoginComponent {
 
   redirectBasedOnRol(roles: string[]) {
     if(roles.some(e => e === rolesDto.admin.valueOf())) {
-      this.router.navigate(['/admin-dashboard']);
+      this.router.navigate(['/empresa/crear-postulacion']);
     } else {
       this.router.navigate(['/dashboard/chat']);
     }
