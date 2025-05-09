@@ -10,5 +10,7 @@ export interface Empresa {
     anioFundacion: number;
     linkedin?: string;
     twitter?: string;
+    id: number
+    user: any;
   }
   

@@ -8,6 +8,8 @@ import { environment } from '../../environments/environment';
 import { Pagos } from '../Modelos/Pagos';
 import { PagosInfoByCliente } from '../Modelos/PagosInfoByCliente';
 import {Empresa} from "../Modelos/Empresa";
+import { OfertaTrabajo } from '../Modelos/OfertaTrabajo';
+import { Aplicacion } from '../Modelos/Aplicacion';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,9 @@ export class ServiceCreditApplicationService {
     return this.http.post<Client>(this.url + "/Cliente/create", formData);
   }
 
-
+  getEmpresaByUserId(userId: number) {
+    return this.http.get<Empresa>(`${this.url}/Empresa/by-user/${userId}`);
+  }
 
 
   saveCredit(credit: Credit) {
@@ -89,4 +93,34 @@ export class ServiceCreditApplicationService {
     const body = { message };
     return this.http.post<{ response: string }>(url, body);
   }
+
+  createOfertaTrabajo(oferta: OfertaTrabajo) {
+    oferta.empresa.user = null;
+    return this.http.post<OfertaTrabajo>(`${this.url}/api/ofertas/crear`, oferta);
+  }
+
+  // Obtener todas las ofertas
+  getOfertas() {
+    return this.http.get<OfertaTrabajo[]>(`${this.url}/api/ofertas/`);
+  }
+
+  // Aplicar a una oferta
+  aplicarOferta(ofertaId: number, clienteId: number) {
+    return this.http.post(`${this.url}/api/ofertas/${ofertaId}/aplicar?clienteId=${clienteId}`, {});
+  }
+
+
+  getClienteByUserId(userId: number) {
+    return this.http.get<Client>(`${this.url}/Cliente/by-user/${userId}`);
+  }
+
+    // Obtener aplicaciones de la empresa por ID
+    getAplicacionesByEmpresaId(empresaId: number) {
+      return this.http.get<Aplicacion[]>(`${this.url}/api/ofertas/empresa/${empresaId}/aplicaciones`);
+    }
+
+    // Descargar CV de un cliente
+    descargarCv(clienteId: number) {
+      return this.http.get<Blob>(`${this.url}/api/ofertas/cv/${clienteId}`, { responseType: 'blob' as 'json' });
+    }
 }

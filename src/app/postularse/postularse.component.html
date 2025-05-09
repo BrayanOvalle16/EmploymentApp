@@ -1,0 +1,55 @@
+<div class="container full-width">
+  <mat-card class="postularse-card">
+    <mat-card-header>
+      <mat-card-title>Postúlate a una Oferta</mat-card-title>
+      <mat-card-subtitle>Busca y aplica a ofertas de trabajo</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="search-container">
+        <form class="example-form" [formGroup]="filtroForm">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Buscar por palabra clave</mat-label>
+            <input matInput [formControl]="filtro" placeholder="Filtra por título o descripción">
+            <mat-icon matPrefix>search</mat-icon>
+          </mat-form-field>
+
+          <div class="search-button-container">
+            <button mat-raised-button color="accent" (click)="filtrarOfertas(filtro.value)">Buscar</button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="filteredOfertas.length > 0 else noOffers" class="offers-container">
+        <table class="offers-table">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Requisitos</th>
+              <th>Salario</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let oferta of filteredOfertas">
+              <td>{{ oferta.titulo }}</td>
+              <td>{{ oferta.descripcion }}</td>
+              <td>{{ oferta.requisitos }}</td>
+              <td>{{ oferta.salario | currency }}</td>
+              <td>
+                <button mat-raised-button color="primary" (click)="aplicar(oferta.id ?? 0)">Aplicar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #noOffers>
+        <div class="no-offers">
+          <p>No se encontraron ofertas que coincidan con tu búsqueda.</p>
+        </div>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

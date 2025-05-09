@@ -1,0 +1,23 @@
+.container.full-width {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  
+  .offers-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .offers-table th, .offers-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .no-offers {
+    text-align: center;
+    margin-top: 20px;
+  }
+  

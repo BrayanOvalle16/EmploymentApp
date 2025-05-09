@@ -28,6 +28,18 @@ export class AuthService {
       );
   }
 
+  getUserId(): number | null {
+    const helper = new JwtHelperService();
+    const token = localStorage.getItem(this.tokenKey);
+    if (token) {
+      const decodedToken = helper.decodeToken(token);
+      const userId = decodedToken['user_id'] || decodedToken['id'] || decodedToken['sub'];
+      return Number(userId);
+    }
+    return null;
+  }
+
+
   getId() {
     const helper = new JwtHelperService();
     const token = localStorage.getItem(this.tokenKey);
