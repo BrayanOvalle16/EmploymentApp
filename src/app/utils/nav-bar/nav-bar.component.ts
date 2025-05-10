@@ -64,7 +64,7 @@ export class NavBarComponent {
   // ✅ Métodos de utilidad
   hasRole(role: rolesDto): boolean {
     console.log(role);
-    console.log(this.roles);
-    return this.roles.includes(role);
+    console.log(this.authService.getRoles());
+    return this.authService.getRoles().includes(role);
   }
 }

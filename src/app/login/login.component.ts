@@ -63,7 +63,6 @@ export class LoginComponent {
   submit() {
     if (this.form.valid ) {
       this.authService.login(this.login).subscribe(res => {
-        this._snackBar.open("Login Correcto", "Ok");
         this.cliente = res;
         this.redirectBasedOnRol(this.authService.getRoles());
       }, err => {

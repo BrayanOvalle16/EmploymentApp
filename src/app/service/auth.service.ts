@@ -59,7 +59,7 @@ export class AuthService {
       const roles = decodedToken['roles'];
       return roles;
     }
-    return null;
+    return [];
   }
   // Método para cerrar sesión
   logout(): void {
